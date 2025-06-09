@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from drones.models import DroneCategory, Drone, Pilot, Competition
+from .models import DroneCategory, Drone, Pilot, Competition
 
 
 class DroneCategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -42,7 +42,7 @@ class CompetitionSerializer(serializers.HyperlinkedModelSerializer):
     drone = DroneSerializer()
 
     class Meta:
-        model = Drone
+        model = Competition
         fields = (
             'url',
             'pk',
