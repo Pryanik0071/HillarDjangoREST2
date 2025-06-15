@@ -16,7 +16,14 @@ DRF project from - **[Django RESTful Web Services](https://www.packtpub.com/en-r
 ![Book](book.jpg)
 
 ## Dependencies
+
+### Python 3.11
+
 - Django==5.1.7
 - django-environ==0.12.0
 - django-filter==25.1
 - djangorestframework==3.15.2
+
+## Install
+
+```pip install -r requirements.txt```
