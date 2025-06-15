@@ -1,3 +1,5 @@
 /venv
 .idea
-restful01/restful01/settings.py
+
+.env
+db.sqlite3

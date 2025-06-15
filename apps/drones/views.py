@@ -12,13 +12,16 @@ from .serializers import PilotCompetitionSerializer
 from .filters import CompetitionsFilter
 
 
+SEARCH_FIELDS = '^name'
+
+
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
     name = "dronecategory-list"
     filterset_fields = ('name',)
     # filter_fields - Устарело
-    search_fields = ('^name',)
+    search_fields = (SEARCH_FIELDS,)
     # ^ - поиск по началу, не точное совпадение
     ordering_fields = ('name',)
 
@@ -40,7 +43,7 @@ class DroneList(generics.ListCreateAPIView):
         'has_it_competed',
     )
     search_fields = (
-        '^name',
+        SEARCH_FIELDS,
     )
     ordering_fields = (
         'name',
@@ -64,7 +67,7 @@ class PilotList(generics.ListCreateAPIView):
         'races_count',
     )
     search_fields = (
-        '^name',
+        SEARCH_FIELDS,
     )
     ordering_fields = (
         'name',
