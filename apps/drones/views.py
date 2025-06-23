@@ -1,16 +1,19 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from .models import DroneCategory
-from .models import Drone
-from .models import Pilot
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+
+from .custompermission import IsCurrentUserOwnerOrReadOnly
+from .filters import CompetitionsFilter
 from .models import Competition
+from .models import Drone
+from .models import DroneCategory
+from .models import Pilot
 from .serializers import DroneCategorySerializer
 from .serializers import DroneSerializer
-from .serializers import PilotSerializer
 from .serializers import PilotCompetitionSerializer
-from .filters import CompetitionsFilter
-
+from .serializers import PilotSerializer
 
 SEARCH_FIELDS = '^name'
 
@@ -49,12 +52,23 @@ class DroneList(generics.ListCreateAPIView):
         'name',
         'manufacturing_date',
     )
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsCurrentUserOwnerOrReadOnly,
+    )
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = "drone-detail"
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        IsCurrentUserOwnerOrReadOnly,
+    )
 
 
 class PilotList(generics.ListCreateAPIView):
@@ -73,12 +87,24 @@ class PilotList(generics.ListCreateAPIView):
         'name',
         'races_count',
     )
+    authentication_classes = (
+        TokenAuthentication,
+    )
+    permission_classes = (
+        IsAuthenticated,
+    )
 
 
 class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = "pilot-detail"
+    authentication_classes = (
+        TokenAuthentication,
+    )
+    permission_classes = (
+        IsAuthenticated,
+    )
 
 
 class CompetitionList(generics.ListCreateAPIView):
