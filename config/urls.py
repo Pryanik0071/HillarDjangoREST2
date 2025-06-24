@@ -19,6 +19,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('drones.urls')),
+    path('v1/', include(('drones.urls', 'drones_v1'), namespace='v1')),
     path('api-auth/', include('rest_framework.urls')),  # LogIn, LogOut for DRF without Admin Django
+    path('v2/', include(('drones.v2.urls', 'drones_v2'), namespace='v2')),
 ]
