@@ -16,8 +16,6 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
-#
-# app_name = 'drones_v1'
 
 urlpatterns = [
     path('drone-categories/', views.DroneCategoryList.as_view(), name=views.DroneCategoryList.name),

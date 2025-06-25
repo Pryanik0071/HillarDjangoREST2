@@ -17,8 +17,6 @@ Including another URLconf
 from django.urls import path
 from drones import views
 from . import views as views_v2
-#
-# app_name = 'drones_v2'
 
 urlpatterns = [
     path('vehicle-categories/', views.DroneCategoryList.as_view(), name=views.DroneCategoryList.name),
