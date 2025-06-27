@@ -24,6 +24,8 @@ DRF project from - **[Django RESTful Web Services](https://www.packtpub.com/en-r
 - django-environ==0.12.0
 - django-filter==25.1
 - djangorestframework==3.15.2
+- pytest==8.4.1
+- pytest-django==4.11.1
 
 ## 💻 Install
 
