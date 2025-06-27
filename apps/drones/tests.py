@@ -28,9 +28,7 @@ class DroneCategoryTests(APITestCase):
         assert DroneCategory.objects.get().name == new_drone_category_name
 
     def test_post_existing_drone_category_name(self):
-        # url = reverse(views.DroneCategoryList.name)
         new_drone_category_name = 'Duplicate Copter'
-        # data = {'name': new_drone_category_name}
         response1 = self.post_drone_category(new_drone_category_name)
         assert response1.status_code == status.HTTP_201_CREATED
         response2 = self.post_drone_category(new_drone_category_name)
