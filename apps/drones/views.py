@@ -138,7 +138,7 @@ class ApiRoot(generics.GenericAPIView):
 
     def get(self, request, *args, **kwargs):
         return Response({
-            'drone-categries': reverse(DroneCategoryList.name, request=request),
+            'drone-categories': reverse(DroneCategoryList.name, request=request),
             'drones': reverse(DroneList.name, request=request),
             'pilots': reverse(PilotList.name, request=request),
             'competitions': reverse(CompetitionList.name, request=request),
