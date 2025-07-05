@@ -21,5 +21,5 @@ jobs:
       - uses: qltysh/qlty-action/coverage@v1
         name: Code Coverage
         with:
-          token: {{secrets.QLTY_COVERAGE_TOKEN}}
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
           files: reports/lcov.info
