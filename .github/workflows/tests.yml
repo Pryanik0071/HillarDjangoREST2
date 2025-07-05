@@ -17,7 +17,7 @@ jobs:
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
-          pytest
+          coverage run -m pytest
       - uses: qltysh/qlty-action/coverage@v1
         name: Code Coverage
         with:
